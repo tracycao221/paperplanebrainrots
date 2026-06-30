@@ -10,6 +10,7 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const popunderScriptUrl = runtimeConfig.adsterraPopunderScriptUrl;
+const socialBarScriptUrl = runtimeConfig.adsterraSocialBarScriptUrl;
 const adsenseClientId = runtimeConfig.adsenseClientId;
 
 export const metadata: Metadata = {
@@ -77,6 +78,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         ) : null}
         {popunderScriptUrl ? (
           <Script id="adsterra-popunder" src={popunderScriptUrl} strategy="afterInteractive" />
+        ) : null}
+        {socialBarScriptUrl ? (
+          <Script id="adsterra-social-bar" src={socialBarScriptUrl} strategy="afterInteractive" />
         ) : null}
         <AdsterraSmartLink />
         <Navbar />
