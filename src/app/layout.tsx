@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     type: "website",
     url: siteConfig.domain,
     siteName: siteConfig.name,
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Wiki, Tier List, Trello, Discord & Calculator`,
     description: siteConfig.description,
     images: [{ url: "/opengraph-image" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Wiki, Tier List, Trello, Discord & Calculator`,
     description: siteConfig.description,
     images: ["/opengraph-image"]
   },

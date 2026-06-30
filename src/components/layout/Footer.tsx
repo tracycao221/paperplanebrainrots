@@ -15,9 +15,11 @@ export function Footer() {
             <div className="mt-3 grid gap-2 text-sm text-white/62">
               <Link href="/codes" className="hover:text-white">Codes</Link>
               <Link href="/tier-list" className="hover:text-white">Tier List</Link>
-              <Link href="/trello" className="hover:text-white">Trello/Discord</Link>
+              <Link href="/wiki" className="hover:text-white">Wiki</Link>
+              <Link href="/trello" className="hover:text-white">Trello</Link>
+              <Link href="/discord" className="hover:text-white">Discord</Link>
               <Link href="/calculator" className="hover:text-white">Calculator</Link>
-              <Link href="/guides" className="hover:text-white">Guides</Link>
+              <Link href="/guide" className="hover:text-white">Guide</Link>
             </div>
           </div>
           <div>

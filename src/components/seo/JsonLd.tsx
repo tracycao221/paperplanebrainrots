@@ -1,4 +1,5 @@
-import { faqs, siteConfig, tierPreview } from "@/data/site";
+import { faqs, siteConfig } from "@/data/site";
+import { tierRows } from "@/data/paper-plane-content";
 
 function JsonLd({ data }: { data: unknown }) {
   return (
@@ -74,8 +75,8 @@ export function ItemListJsonLd() {
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: `${siteConfig.gameName} Tier List`,
-        numberOfItems: tierPreview.length,
-        itemListElement: tierPreview.map((item, index) => ({
+        numberOfItems: tierRows.length,
+        itemListElement: tierRows.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: item.name,

@@ -1,15 +1,15 @@
-import type { EditorialSignal, FaqItem, GameCode, HeroMetric, LinkCard, SiteConfig, TierPreviewItem } from "@/types/site";
+import type { EditorialSignal, FaqItem, GameCode, HeroMetric, LinkCard, SiteConfig } from "@/types/site";
 import { gameConfig } from "@/data/game.config";
 
 export const siteConfig: SiteConfig = {
   name: `${gameConfig.name} Wiki`,
   domain: gameConfig.domain,
   gameName: gameConfig.name,
-  description: `${gameConfig.name} wiki with active codes, tier list rankings, Trello and Discord status, calculators, guides, and source-backed Roblox progression help.`,
-  valueProposition: `Track active ${gameConfig.name} codes, compare the best picks, and use practical tools before you spend time grinding in Roblox.`,
+  description: `${gameConfig.name} codes, wiki, tier list, Trello, Discord, calculator, Brainrots, paper plane progression, upgrades, floors, and rebirth guide.`,
+  valueProposition: `Find checked ${gameConfig.name} codes, plan paper plane progression, compare Brainrot income priorities, and use the calculator before spending money on weights, floors, or rebirth prep.`,
   shortDisclosure: `${gameConfig.name} Wiki is an unofficial fan-made resource. Roblox and the game creators remain the source of record for official support and updates.`,
   lastUpdated: "2026-06-30",
-  freshnessLabel: "codes, source links, Brainrots, and calculator formulas under active checks",
+  freshnessLabel: "codes, Brainrots, throw power, floors, upgrades, rebirth, Trello, and Discord status checked",
   keywords: [
     `${gameConfig.name}`,
     `${gameConfig.name} codes`,
@@ -20,6 +20,11 @@ export const siteConfig: SiteConfig = {
     `${gameConfig.name} official wiki`,
     `${gameConfig.name} guide`,
     `${gameConfig.name} calculator`,
+    `${gameConfig.name} discord`,
+    `${gameConfig.name} brainrots`,
+    `${gameConfig.name} rebirth`,
+    `${gameConfig.name} upgrades`,
+    `${gameConfig.name} floors`,
     "Roblox codes",
     "Roblox tier list"
   ],
@@ -33,25 +38,33 @@ export const siteConfig: SiteConfig = {
       label: "Codes",
       href: "/codes",
       items: [
-        { label: "Active Codes", href: "/codes", description: "Latest known rewards and redemption steps." },
-        { label: "Sources", href: "/sources", description: "Where code and update claims should be checked." }
+        { label: "Active Codes", href: "/codes", description: "Last checked, active codes, expired codes, and redeem steps." },
+        { label: "How to Redeem", href: "/codes#how-to-redeem", description: "Where the code box should appear if the game supports codes." }
       ]
     },
     {
       label: "Tier List",
       href: "/tier-list",
       items: [
-        { label: "Rankings", href: "/tier-list", description: "Best current picks and why they matter." },
-        { label: "Calculator", href: "/calculator", description: "Decision helper for builds or progression." }
+        { label: "Rankings", href: "/tier-list", description: "Ranked Brainrot income and progression priorities." },
+        { label: "Calculator", href: "/calculator", description: "Plan weights, floors, distance, and farming time." }
       ]
     },
     {
       label: "Wiki",
       href: "/wiki",
       items: [
-        { label: "Wiki Hub", href: "/wiki", description: "Entity pages for items, units, maps, clans, or systems." },
-        { label: "Guides", href: "/guides", description: "Beginner, farming, boss, and progression paths." },
-        { label: "Trello/Discord", href: "/trello", description: "Official board, Discord, and wiki status." }
+        { label: "Wiki Hub", href: "/wiki", description: "Brainrots, throws, weights, floors, and rebirth notes." },
+        { label: "Guide", href: "/guide", description: "Beginner route, progression path, and upgrade planning." },
+        { label: "Trello/Discord", href: "/trello", description: "Official board, Discord, and source status." }
+      ]
+    },
+    {
+      label: "Discord",
+      href: "/discord",
+      items: [
+        { label: "Discord Status", href: "/discord", description: "Check whether an official invite is verified." },
+        { label: "Trello Status", href: "/trello", description: "Check official Trello and source status." }
       ]
     },
     {
@@ -67,101 +80,68 @@ export const siteConfig: SiteConfig = {
 };
 
 export const heroActions = [
-  { href: "/codes", label: "Get codes" },
-  { href: "/tier-list", label: "View tier list" },
-  { href: "/trello", label: "Check sources" },
-  { href: "/calculator", label: "Use calculator" }
+  { href: "/codes", label: "Codes" },
+  { href: "/wiki", label: "Wiki" },
+  { href: "/tier-list", label: "Tier List" },
+  { href: "/calculator", label: "Calculator" }
 ] as const;
 
 export const heroMetrics: HeroMetric[] = [
-  { label: "Code status", value: "Live", note: "Designed for frequent checks" },
-  { label: "Core pages", value: "10", note: "Codes, tier list, Trello, tools, guides, wiki" },
-  { label: "Source notes", value: "Clear", note: "Official, community, and needs-check labels" },
-  { label: "Source model", value: "Clear", note: "Official and community links split" }
+  { label: "Code status", value: "Checked", note: "No verified active code is published yet" },
+  { label: "Core pages", value: "7", note: "Codes, wiki, tier list, Trello, Discord, calculator, guide" },
+  { label: "Main loop", value: "Throw", note: "Paper plane distance unlocks better Brainrot routes" },
+  { label: "Progression", value: "Upgrade", note: "Weights, floors, income, and rebirth planning" }
 ];
 
 export const activeCodes: GameCode[] = [
-  { code: "No verified active codes yet", reward: "Checked sources did not confirm a working reward code.", status: "Needs check", addedDate: "Checked 2026-06-30" }
-];
-
-export const tierPreview: TierPreviewItem[] = [
-  {
-    name: "Early income Brainrot",
-    tier: "B",
-    role: "Starter placement",
-    reason: "Prioritize the first Brainrot that reliably improves money per minute, then replace this row after names and income values are verified.",
-    confidence: "Needs check",
-    bestFor: ["beginner", "low investment"],
-    sourceNote: "Replace with checked Roblox, creator, wiki, video, or community evidence.",
-    teamNote: "Good starter picks should work without rare team pieces."
-  },
-  {
-    name: "Distance helper",
-    tier: "B",
-    role: "Throw progression",
-    reason: "A better throw-distance path should unlock catches and floors faster once upgrade math is confirmed.",
-    confidence: "Needs check",
-    bestFor: ["farming", "repeat runs"],
-    sourceNote: "Replace with current creator videos, wiki notes, or verified community testing.",
-    teamNote: "Pair farming picks with support or speed options when the game has team slots."
-  },
-  {
-    name: "Floor income setup",
-    tier: "C",
-    role: "Later floors",
-    reason: "Later-floor placements should be ranked only after floor costs, space, and Brainrot income are verified.",
-    confidence: "Needs check",
-    bestFor: ["late game", "bossing"],
-    sourceNote: "Replace with cross-checked late-game, update, or boss-clear evidence.",
-    teamNote: "Endgame picks need synergy notes before being ranked as final."
-  }
+  { code: "No verified active codes", reward: "No official or live-tested Paper Plane for Brainrots code is confirmed yet.", status: "Needs check", addedDate: "Last checked 2026-06-30" }
 ];
 
 export const toolCards: LinkCard[] = [
   {
     title: `${gameConfig.name} Calculator`,
     href: "/calculator",
-    eyebrow: "Primary tool",
-    description: "A practical decision helper that can later become a full formula-based calculator."
+    eyebrow: "Planner",
+    description: "Estimate money, weights, distance gains, and the next floor decision."
   },
   {
     title: `${gameConfig.name} Tier List`,
     href: "/tier-list",
     eyebrow: "Rankings",
-    description: "Ranks the current best picks with notes for beginners, farming, and late-game use."
+    description: "Rank Brainrot income, floor unlocks, throw-power breakpoints, and rebirth prep."
   },
   {
     title: `${gameConfig.name} Codes`,
     href: "/codes",
     eyebrow: "Codes",
-    description: "Tracks active codes, expired-code conflicts, and redemption instructions."
+    description: "Last checked status, active codes, expired codes, redeem steps, and update log."
   },
   {
     title: `${gameConfig.name} Trello & Discord`,
     href: "/trello",
     eyebrow: "Community status",
-    description: "Clarifies official Trello, Discord, wiki, and Roblox source status for update-sensitive claims."
+    description: "Clarifies official Trello, Discord, wiki, Roblox, and source status."
   }
 ];
 
 export const guideClusters: LinkCard[] = [
   {
     title: "Beginner guide",
-    href: "/guides",
+    href: "/guide#beginner-route",
     eyebrow: "Guide",
-    description: "First-session path, mistakes to avoid, and what to unlock first."
+    description: "First-session route for Brainrot income, weights, and early floors."
   },
   {
     title: "Progression guide",
-    href: "/guides",
+    href: "/guide#paper-plane-progression",
     eyebrow: "Guide",
-    description: "Mid-game priorities, resource planning, and farming routes."
+    description: "When to buy weights, save for floors, or push a new throw distance band."
   },
   {
-    title: "Advanced strategy",
-    href: "/guides",
+    title: "Rebirth guide",
+    href: "/guide#rebirth-upgrades",
     eyebrow: "Guide",
-    description: "Late-game builds, boss prep, meta choices, or trading decisions."
+    description: "How to think about rebirth timing, persistent boosts, and reset value."
   }
 ];
 
@@ -224,22 +204,22 @@ export const editorialSignals: EditorialSignal[] = [
 
 export const videoGuides: LinkCard[] = [
   {
-    title: "Gameplay overview",
-    href: "#",
-    eyebrow: "Video",
-    description: "Add a current creator guide only after it shows real Paper Plane for Brainrots gameplay."
+    title: "Brainrot income index",
+    href: "/wiki",
+    eyebrow: "Expansion",
+    description: "Add verified named Brainrots with income, catch distance, floor, and replacement timing."
   },
   {
-    title: "Beginner route",
-    href: "#",
-    eyebrow: "Video",
-    description: "Add a recent walkthrough for throwing farther, placing Brainrots, and buying dumbbells."
+    title: "Floor and weight table",
+    href: "/calculator",
+    eyebrow: "Expansion",
+    description: "Turn verified floor costs and weight gains into calculator defaults."
   },
   {
-    title: "Meta showcase",
-    href: "#",
-    eyebrow: "Video",
-    description: "Add ranking videos only when they support verified Brainrot or floor data."
+    title: "Rebirth requirement tracker",
+    href: "/guide#rebirth-upgrades",
+    eyebrow: "Expansion",
+    description: "Document rebirth requirements and persistent boosts after live verification."
   }
 ];
 
@@ -259,7 +239,7 @@ export const faqs: Record<"home" | "codes" | "tierList" | "calculator", FaqItem[
     },
     {
       q: `What pages should be expanded first?`,
-      a: "Start with codes, tier list, Trello/Discord status, calculator, beginner guide, wiki hub, and sources. Add entity pages after research confirms the game's real systems."
+      a: "Start with codes, tier list, Trello and Discord status, calculator, guide, wiki hub, and sources. Add named Brainrot pages after research confirms income, floors, and catch distance."
     }
   ],
   codes: [
@@ -275,7 +255,7 @@ export const faqs: Record<"home" | "codes" | "tierList" | "calculator", FaqItem[
   tierList: [
     {
       q: "How should the tier list be updated?",
-      a: "Replace placeholder tiers with research-backed rankings, explain use cases, and split beginner, farming, and endgame recommendations when needed."
+      a: "Add named Brainrot rows only after live checks confirm income, catch distance, floor unlocks, or creator-owned update notes. Until then, rank the progression decisions players can verify."
     }
   ],
   calculator: [

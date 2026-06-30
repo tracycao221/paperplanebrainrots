@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { activeCodes, faqs, siteConfig } from "@/data/site";
+import { faqs, siteConfig } from "@/data/site";
+import { activeCodeRows, codeSources, codeUpdateLog, expiredCodeRows, lastChecked, redeemSteps } from "@/data/paper-plane-content";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.gameName} Codes`,
-  description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
+  title: `${siteConfig.gameName} Codes - Last Checked, Active & Expired Codes`,
+  description: `${siteConfig.gameName} codes page with last checked date, active codes, expired codes, how to redeem, where to find new codes, and update log.`,
   alternates: { canonical: `${siteConfig.domain}/codes` },
   openGraph: {
-    title: `${siteConfig.gameName} Codes`,
-    description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
+    title: `${siteConfig.gameName} Codes - Last Checked, Active & Expired Codes`,
+    description: `${siteConfig.gameName} codes page with last checked date, active codes, expired codes, how to redeem, where to find new codes, and update log.`,
     url: `${siteConfig.domain}/codes`,
     images: ["/opengraph-image"]
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.gameName} Codes`,
-    description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
+    title: `${siteConfig.gameName} Codes - Last Checked, Active & Expired Codes`,
+    description: `${siteConfig.gameName} codes page with last checked date, active codes, expired codes, how to redeem, where to find new codes, and update log.`,
     images: ["/opengraph-image"]
   }
 };
@@ -31,50 +32,105 @@ export default function CodesPage() {
       <PageIntro
         eyebrow="Freshness-sensitive"
         title={`${siteConfig.gameName} Codes`}
-        description="Use this page as the canonical codes surface. Replace placeholder rewards with verified codes from official and trusted community sources before launch."
-      />
+        description="Last checked code status for Paper Plane for Brainrots. We do not invent codes: a code only appears as active after an official source or live redemption test confirms it."
+      >
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Last checked</p>
+            <p className="mt-2 text-xl font-extrabold text-white">{lastChecked}</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Active codes</p>
+            <p className="mt-2 text-xl font-extrabold text-white">0 verified</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Policy</p>
+            <p className="mt-2 text-xl font-extrabold text-white">No fake codes</p>
+          </div>
+        </div>
+      </PageIntro>
 
-      <section className="mt-10">
+      <section id="active-codes" className="mt-10">
         <SectionHeader
           eyebrow="Active list"
-          title="Current best-known codes"
-          copy="Starter code entries stay marked Needs check until a current source or live test confirms the reward."
+          title="Active Paper Plane for Brainrots codes"
+          copy="No verified active code is available right now. This table stays honest until a working code is confirmed."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {activeCodes.map((code) => (
+          {activeCodeRows.map((code) => (
             <article key={code.code} className="content-card">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="font-mono text-2xl font-extrabold text-[color:var(--accent)]">{code.code}</h2>
                 <span className="status-pill">{code.status}</span>
               </div>
               <p className="mt-3 text-white/70">{code.reward}</p>
-              <p className="mt-2 text-sm text-white/45">Added or checked: {code.addedDate}</p>
+              <p className="mt-2 text-sm text-white/45">Last checked: {code.lastChecked}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-10 grid gap-4 lg:grid-cols-2">
+      <section id="expired-codes" className="mt-10">
+        <SectionHeader
+          eyebrow="Expired list"
+          title="Expired Paper Plane for Brainrots codes"
+          copy="Expired codes are useful for searchers, but only real previously working codes should be added here."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {expiredCodeRows.map((code) => (
+            <article key={code.code} className="content-card">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 className="font-mono text-2xl font-extrabold text-white">{code.code}</h2>
+                <span className="status-pill">{code.status}</span>
+              </div>
+              <p className="mt-3 text-white/70">{code.reward}</p>
+              <p className="mt-2 text-sm text-white/45">Last checked: {code.lastChecked}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="how-to-redeem" className="mt-10 grid gap-4 lg:grid-cols-2">
         <article className="content-card">
           <SectionHeader
             eyebrow="Redeem flow"
-            title="How to redeem codes"
-            copy="Update these steps after checking the live in-game UI. Roblox code flows often move between shop, settings, menu, and event panels."
+            title="How to redeem Paper Plane for Brainrots codes"
+            copy="A code box has not been confirmed in every public source. Use these steps only if the game shows a code or reward input."
           />
           <ol className="mt-5 grid gap-3 text-white/70">
-            <li>1. Open the game from the official Roblox page.</li>
-            <li>2. Finish any tutorial gate that hides menus.</li>
-            <li>3. Find the Codes, Rewards, Shop, or Settings panel.</li>
-            <li>4. Paste the code exactly, then claim the reward.</li>
+            {redeemSteps.map((step, index) => (
+              <li key={step}>{index + 1}. {step}</li>
+            ))}
           </ol>
         </article>
         <article className="content-card">
           <SectionHeader
-            eyebrow="Verification"
-            title="Code freshness policy"
-            copy="Codes should show the date checked, source type, and conflict notes when trackers disagree. Never hide uncertainty."
+            eyebrow="New codes"
+            title="Where to find new codes"
+            copy="The safest sources are creator-owned channels. Community posts can help discovery, but they should not be treated as verified until tested."
           />
+          <ul className="mt-5 grid gap-3 text-white/70">
+            {codeSources.map((source) => (
+              <li key={source}>- {source}</li>
+            ))}
+          </ul>
         </article>
+      </section>
+
+      <section id="update-log" className="mt-10">
+        <SectionHeader
+          eyebrow="Update log"
+          title="Codes page update log"
+          copy="Every code check should leave a short trail so readers know what changed and when."
+        />
+        <div className="mt-6 grid gap-4">
+          {codeUpdateLog.map((entry) => (
+            <article key={entry.note} className="content-card">
+              <span className="mini-label">{entry.date}</span>
+              <p className="mt-3 text-white/70">{entry.note}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   );

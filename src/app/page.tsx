@@ -8,21 +8,20 @@ import {
   heroMetrics,
   officialLinks,
   siteConfig,
-  tierPreview,
   toolCards,
-  videoGuides,
-  wikiCards
+  videoGuides
 } from "@/data/site";
+import { tierRows, wikiSections } from "@/data/paper-plane-content";
 import { FaqJsonLd, SoftwareApplicationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader, TrustNote } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.gameName} Wiki, Codes, Tier List and Tools`,
+  title: `${siteConfig.gameName} Codes, Wiki, Tier List, Trello, Discord & Calculator`,
   description: siteConfig.description,
   alternates: { canonical: siteConfig.domain },
   openGraph: {
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Wiki, Tier List, Trello, Discord & Calculator`,
     description: siteConfig.description,
     url: siteConfig.domain,
     type: "website",
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Wiki, Tier List, Trello, Discord & Calculator`,
     description: siteConfig.description,
     images: ["/opengraph-image"]
   }
@@ -60,9 +59,9 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-12">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <SectionHeader
-            eyebrow="Freshness center"
-            title={`${siteConfig.gameName} codes and update status`}
-            copy="Codes are the highest-repeat Roblox search intent, so the homepage surfaces the latest verified set and sends players into the dedicated codes page."
+            eyebrow="Codes"
+            title={`${siteConfig.gameName} codes last checked`}
+            copy="The codes page tracks active codes, expired codes, redeem steps, source policy, and update log. No code is published unless it is official or live-tested."
           />
           <Link className="button-secondary" href="/codes">
             View all codes
@@ -85,19 +84,19 @@ export default function HomePage() {
       <section className="bg-white/[0.025]">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHeader
-            eyebrow="Tier preview"
-            title={`${siteConfig.gameName} tier list preview`}
-            copy="Start with the strongest current picks, then use the full tier list when you need ranking notes, substitutes, and update dates."
+            eyebrow="Tier list"
+            title="Ranked progression priorities"
+            copy="This ranking focuses on what actually moves a Paper Plane for Brainrots account forward: Brainrot income, throw-power breakpoints, floor unlocks, and rebirth timing."
           />
-          <div className="grid gap-4 md:grid-cols-3">
-            {tierPreview.map((item) => (
+          <div className="grid gap-4 md:grid-cols-2">
+            {tierRows.slice(0, 4).map((item) => (
               <Link key={item.name} href="/tier-list" className="content-card">
                 <div className="flex items-center justify-between">
                   <span className="tier-badge">{item.tier}</span>
-                  <span className="text-sm text-white/50">{item.role}</span>
+                  <span className="text-sm text-white/50">#{item.rank}</span>
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-white">{item.name}</h3>
-                <p className="mt-2 text-sm text-white/65">{item.reason}</p>
+                <p className="mt-2 text-sm text-white/65">{item.why}</p>
               </Link>
             ))}
           </div>
@@ -108,7 +107,7 @@ export default function HomePage() {
         <SectionHeader
           eyebrow="Core tools"
           title="Tools players can use immediately"
-          copy="Start with codes, tier list, calculator, and source checks before spending rare resources or committing to a build."
+          copy="Start with codes, wiki, tier list, Trello, Discord, calculator, and guide pages before spending money on weights, floors, or a rebirth route."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {toolCards.map((tool) => (
@@ -126,8 +125,8 @@ export default function HomePage() {
           <div>
             <SectionHeader
               eyebrow="Guides"
-              title="Pick the next problem to solve"
-              copy="Use these guides when you need beginner advice, safer upgrade choices, farming routes, or advanced strategy."
+              title="Paper plane progression guide"
+              copy="Use the guide when you need a practical route for first throws, Brainrot income, weight upgrades, floor unlocks, and rebirth prep."
             />
             <div className="mt-6 grid gap-3">
               {guideClusters.map((guide) => (
@@ -144,15 +143,15 @@ export default function HomePage() {
           <div>
             <SectionHeader
               eyebrow="Wiki coverage"
-              title="Entity pages for Roblox search demand"
-              copy="Characters, items, maps, clans, units, codes, and puzzle pages should be split into wiki entities when research confirms them."
+              title="Wiki topics that match player searches"
+              copy="Paper Plane for Brainrots searches are mostly about codes, Brainrots, throw distance, weights, floors, Trello, Discord, and upgrade routes."
             />
             <div className="mt-6 grid gap-3">
-              {wikiCards.map((item) => (
-                <Link key={item.href} href={item.href} className="row-link">
+              {wikiSections.slice(0, 5).map((item) => (
+                <Link key={item.title} href="/wiki" className="row-link">
                   <span>
                     <strong>{item.title}</strong>
-                    <small>{item.description}</small>
+                    <small>{item.summary}</small>
                   </span>
                   <span aria-hidden="true">-&gt;</span>
                 </Link>
@@ -165,8 +164,8 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-12">
         <SectionHeader
           eyebrow="Source check"
-          title="Official and community sources"
-          copy="Use these links and notes to see what is official, what is community reported, and what still needs checking."
+          title="Roblox, Trello, Discord, and wiki source status"
+          copy="Use source status pages to separate official facts from community reports. This matters for codes, Brainrot stats, tier-list changes, and update notes."
         />
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           {officialLinks.map((link) => {
@@ -199,17 +198,17 @@ export default function HomePage() {
       <section className="bg-white/[0.025]">
         <div className="mx-auto max-w-7xl px-4 py-12">
           <SectionHeader
-            eyebrow="Community research"
-            title="Video and creator references"
-            copy="Recent creator videos help players understand gameplay, updates, rankings, and strategy. Treat videos as supporting references, not official patch notes."
+            eyebrow="Long-tail coverage"
+            title="Mechanics to expand next"
+            copy="The strongest next pages are named Brainrot index entries, update notes, floor costs, weight tables, rebirth requirements, and verified Discord or Trello links."
           />
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {videoGuides.map((video) => (
-              <a key={video.href} href={video.href} className="content-card" target="_blank" rel="noreferrer">
+              <Link key={video.href} href={video.href} className="content-card">
                 <span className="mini-label">{video.source ?? video.eyebrow}</span>
                 <h3 className="mt-3 text-lg font-bold text-white">{video.title}</h3>
                 <p className="mt-2 text-sm text-white/65">{video.description}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -219,7 +218,7 @@ export default function HomePage() {
         <SectionHeader
           eyebrow="FAQ"
           title={`${siteConfig.gameName} quick answers`}
-          copy="Quick answers for codes, sources, rankings, and the next page to check."
+          copy="Quick answers for Paper Plane for Brainrots codes, wiki status, tier list rankings, and progression planning."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {faqs.home.map((faq) => (

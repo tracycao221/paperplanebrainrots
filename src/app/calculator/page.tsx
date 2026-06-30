@@ -5,8 +5,8 @@ import { BreadcrumbJsonLd, FaqJsonLd, SoftwareApplicationJsonLd } from "@/compon
 import { Breadcrumbs, PageIntro } from "@/components/ui/content";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.gameName} Calculator`,
-  description: `Use the ${siteConfig.gameName} calculator starter to plan codes, farming, boss prep, PvP, and progression decisions.`,
+  title: `${siteConfig.gameName} Calculator - Money, Weights, Distance & Floors`,
+  description: `Use the ${siteConfig.gameName} calculator to estimate money, Brainrot income, farming time, weight upgrades, throw distance, floor gap, and progression decisions.`,
   alternates: { canonical: `${siteConfig.domain}/calculator` }
 };
 
@@ -20,7 +20,7 @@ export default function CalculatorPage() {
       <PageIntro
         eyebrow="Primary tool"
         title={`${siteConfig.gameName} Calculator`}
-        description="This is the standard starter tool shell. Replace the heuristic with verified formulas once research produces rates, stat tables, or game-specific mechanics."
+        description="Estimate money after farming, affordable weight upgrades, throw-distance gain, and the gap to the next floor. Replace the default numbers with your current Brainrot income, upgrade cost, and floor target."
       />
       <section className="mt-10">
         <CalculatorTool />
